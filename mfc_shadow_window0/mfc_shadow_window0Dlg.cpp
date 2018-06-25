@@ -63,6 +63,7 @@ BEGIN_MESSAGE_MAP(Cmfc_shadow_window0Dlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_WM_CREATE()
 END_MESSAGE_MAP()
 
 
@@ -151,3 +152,22 @@ HCURSOR Cmfc_shadow_window0Dlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+int Cmfc_shadow_window0Dlg::OnCreate(LPCREATESTRUCT lpCreateStruct)
+{
+	if (CDialogEx::OnCreate(lpCreateStruct) == -1)
+		return -1;
+
+	// TODO:  Add your specialized creation code here
+	long lstyle = ::GetWindowLong(*this, GWL_STYLE);
+	lstyle &= ~WS_CAPTION;
+	::SetWindowLong(*this, GWL_STYLE, lstyle | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
+
+	m_wnd_shadow.Create(m_hWnd);
+	m_wnd_shadow.SetSize(8);
+	m_wnd_shadow.SetPosition(0, 0);
+
+	COLORREF colorref = RGB(0, 173, 239);
+	m_wnd_shadow.SetColor(colorref);
+
+	return 0;
+}

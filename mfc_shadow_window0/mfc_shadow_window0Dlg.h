@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include "WndShadow.h"
 
 // Cmfc_shadow_window0Dlg dialog
 class Cmfc_shadow_window0Dlg : public CDialogEx
@@ -29,4 +30,9 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+
+public:
+	CWndShadow m_wnd_shadow;
 };

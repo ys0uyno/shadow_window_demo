@@ -51,6 +51,7 @@ BOOL Cmfc_shadow_window0App::InitInstance()
 
 	CWinApp::InitInstance();
 
+	CWndShadow::Initialize(AfxGetInstanceHandle());
 
 	AfxEnableControlContainer();
 
